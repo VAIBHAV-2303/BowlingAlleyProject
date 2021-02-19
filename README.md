@@ -3,6 +3,6 @@
 ## Team 6
 
 * Vaibhav Garg
-* Surekha Medhapati
+* Surekha Medapati
 * Akshay Goindani
 * Hitesh Kumar
