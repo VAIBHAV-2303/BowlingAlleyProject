@@ -107,16 +107,9 @@ class ControlDesk extends Thread {
 	private Bowler registerPatron(String nickName) {
 		Bowler patron = null;
 
-		try {
-			// only one patron / nick.... no dupes, no checks
+		// only one patron / nick.... no dupes, no checks
 
-			patron = BowlerFile.getBowlerInfo(nickName);
-
-		} catch (FileNotFoundException e) {
-			System.err.println("Error..." + e);
-		} catch (IOException e) {
-			System.err.println("Error..." + e);
-		}
+		patron = BowlerSQL.getBowlerInfo(nickName);
 
 		return patron;
 	}

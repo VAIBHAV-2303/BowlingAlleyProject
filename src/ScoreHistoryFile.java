@@ -11,7 +11,7 @@ import java.io.*;
 
 public class ScoreHistoryFile implements ScoreHistoryDataInterface{
 
-	private static String SCOREHISTORY_DAT = "src/SCOREHISTORY.DAT";
+	private static String SCOREHISTORY_DAT = "SCOREHISTORY.DAT";
 
 	public static void addScore(String nick, String date, String score)
 		throws IOException, FileNotFoundException {

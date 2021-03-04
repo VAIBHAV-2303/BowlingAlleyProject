@@ -88,7 +88,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		bowlerPanel.setBorder(new TitledBorder("Bowler Database"));
 
 		try {
-			bowlerdb = new Vector(BowlerFile.getBowlers());
+			bowlerdb = new Vector(BowlerSQL.getBowlers());
 		} catch (Exception e) {
 			System.err.println("File Error here add party view");
 			bowlerdb = new Vector();
@@ -192,13 +192,13 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
 	public void updateNewPatron(NewPatronView newPatron) {
 		try {
-			Bowler checkBowler = BowlerFile.getBowlerInfo( newPatron.getNick() );
+			Bowler checkBowler = BowlerSQL.getBowlerInfo( newPatron.getNick() );
 			if ( checkBowler == null ) {
-				BowlerFile.putBowlerInfo(
+				BowlerSQL.putBowlerInfo(
 					newPatron.getNick(),
 					newPatron.getFull(),
 					newPatron.getEmail());
-				bowlerdb = new Vector(BowlerFile.getBowlers());
+				bowlerdb = new Vector(BowlerSQL.getBowlers());
 				allBowlers.setListData(bowlerdb);
 				party.add(newPatron.getNick());
 				partyList.setListData(party);

@@ -246,7 +246,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 					Date date = new Date();
 					String dateString;
 					dateString = new StringBuilder().append("").append(date.getHours()).append(":").append(date.getMinutes()).append(" ").append(date.getMonth()).append("/").append(date.getDay()).append("/").append(date.getYear() + 1900).toString();
-					ScoreHistoryFile.addScore(currentThrower.getNick(), dateString, Integer.toString(cumulScores[bowlIndex][9]));
+					ScoreHistorySQL.addScore(currentThrower.getNick(), dateString, Integer.toString(cumulScores[bowlIndex][9]));
 				} catch (Exception e) {System.err.println("Exception in addScore. "+ e );}
 			}
 
