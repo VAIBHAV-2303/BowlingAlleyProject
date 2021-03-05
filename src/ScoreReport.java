@@ -11,6 +11,9 @@ import java.util.Vector;
 import java.util.Iterator;
 import java.net.*;
 import java.awt.print.*;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+
 
 public class ScoreReport {
 
