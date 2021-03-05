@@ -36,6 +36,34 @@ public class ScoreReport {
 		content += "\n";
 		content += "Final scores for this session: ";
 		content += scores[0];
+		if(scores[0] <= 100)
+		{
+			
+			//String s1;
+			//s1 = nick + " emoticon is : " + "😔";
+			ImageIcon icon = new ImageIcon("embarrassed.png");
+			//System.out.println(s1);
+			JOptionPane.showMessageDialog(null,nick+" NextTime Goodluck",nick,JOptionPane.PLAIN_MESSAGE,icon);
+		}
+		
+		if((scores[0] >= 101) && (scores[0] <= 180) )
+		{
+			
+			//String s2 = nick + " emoticon is : " + "👏";
+			//System.out.println(s2);
+			ImageIcon icon = new ImageIcon("goodjob.jpg");
+			JOptionPane.showMessageDialog(null,nick+" GoodJob",nick,JOptionPane.PLAIN_MESSAGE,icon);
+	
+		}
+		if(scores[0] >= 181)
+		{
+			
+			//content +=" inside emoji :";
+			//content +="\uD83D\uDE00";
+			//System.out.println(nick+" emoticon is : "+"🥳");
+			ImageIcon icon = new ImageIcon("appreciation.jpg");
+			JOptionPane.showMessageDialog(null,nick+" Excellent",nick,JOptionPane.PLAIN_MESSAGE,icon);
+		}
 		for (int i = 1; i < games; i++){
 			content += ", " + scores[i];
 		}
