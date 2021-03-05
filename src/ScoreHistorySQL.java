@@ -4,7 +4,7 @@ import java.util.Vector;
 
 public class ScoreHistorySQL implements ScoreHistoryDataInterface{
 
-    private static String url = "jdbc:sqlite:./alley.db";
+    private static String url = "jdbc:sqlite:DB/alley.db";
 
     public static void addScore(String nick, String date, String score) {
         // Creating connection to the DB
