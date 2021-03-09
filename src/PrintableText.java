@@ -13,7 +13,7 @@ public class PrintableText implements Printable {
 	int POINTS_PER_INCH;
 
 	public PrintableText(String t) {
-		POINTS_PER_INCH = 72;
+		//POINTS_PER_INCH = 72;
 		text = t;
 	}
 
@@ -27,7 +27,7 @@ public class PrintableText implements Printable {
 		g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
 		g2d.setPaint(Color.black);
 
-		Point2D.Double pen = new Point2D.Double(0.25 * POINTS_PER_INCH, 0.25 * POINTS_PER_INCH);
+		Point2D.Double pen = new Point2D.Double(0.25 * NumConfig.POINTS_PER_INCH, 0.25 * NumConfig.POINTS_PER_INCH);
 
 		Font font = new Font ("courier", Font.PLAIN, 12);
    		FontRenderContext frc = g2d.getFontRenderContext();
