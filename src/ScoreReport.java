@@ -41,7 +41,7 @@ public class ScoreReport {
 			
 			//String s1;
 			//s1 = nick + " emoticon is : " + "😔";
-			ImageIcon icon = new ImageIcon("embarrassed.png");
+			ImageIcon icon = new ImageIcon("emoji/embarrassed.png");
 			//System.out.println(s1);
 			JOptionPane.showMessageDialog(null,nick+" NextTime Goodluck",nick,JOptionPane.PLAIN_MESSAGE,icon);
 		}
@@ -51,7 +51,7 @@ public class ScoreReport {
 			
 			//String s2 = nick + " emoticon is : " + "👏";
 			//System.out.println(s2);
-			ImageIcon icon = new ImageIcon("goodjob.jpg");
+			ImageIcon icon = new ImageIcon("emoji/goodjob.jpg");
 			JOptionPane.showMessageDialog(null,nick+" GoodJob",nick,JOptionPane.PLAIN_MESSAGE,icon);
 	
 		}
@@ -61,7 +61,7 @@ public class ScoreReport {
 			//content +=" inside emoji :";
 			//content +="\uD83D\uDE00";
 			//System.out.println(nick+" emoticon is : "+"🥳");
-			ImageIcon icon = new ImageIcon("appreciation.jpg");
+			ImageIcon icon = new ImageIcon("emoji/appreciation.jpg");
 			JOptionPane.showMessageDialog(null,nick+" Excellent",nick,JOptionPane.PLAIN_MESSAGE,icon);
 		}
 		for (int i = 1; i < games; i++){
