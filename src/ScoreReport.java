@@ -1,6 +1,6 @@
 /**
  * 
- * SMTP implementation based on code by R�al Gagnon mailto:real@rgagnon.com
+ * SMTP implementation based on code by Rï¿½al Gagnon mailto:real@rgagnon.com
  Score reports through email and printouts
  * 
  */
@@ -36,33 +36,42 @@ public class ScoreReport {
 		content += "\n";
 		content += "Final scores for this session: ";
 		content += scores[0];
-		if(scores[0] <= 100)
+		if(scores[0] <= 130)
 		{
 			
 			//String s1;
-			//s1 = nick + " emoticon is : " + "😔";
+			//s1 = nick + " emoticon is : " + "ðŸ˜”";
 			ImageIcon icon = new ImageIcon("emoji/embarrassed.png");
 			//System.out.println(s1);
 			JOptionPane.showMessageDialog(null,nick+" NextTime Goodluck",nick,JOptionPane.PLAIN_MESSAGE,icon);
 		}
 		
-		if((scores[0] >= 101) && (scores[0] <= 180) )
+		if((scores[0] >= 131) && (scores[0] <= 180) )
 		{
 			
-			//String s2 = nick + " emoticon is : " + "👏";
+			//String s2 = nick + " emoticon is : " + "ðŸ‘�";
 			//System.out.println(s2);
 			ImageIcon icon = new ImageIcon("emoji/goodjob.jpg");
 			JOptionPane.showMessageDialog(null,nick+" GoodJob",nick,JOptionPane.PLAIN_MESSAGE,icon);
 	
 		}
-		if(scores[0] >= 181)
+		if((scores[0] >= 181) && (scores[0] <= 200) )
 		{
 			
 			//content +=" inside emoji :";
 			//content +="\uD83D\uDE00";
-			//System.out.println(nick+" emoticon is : "+"🥳");
+			//System.out.println(nick+" emoticon is : "+"ðŸ¥³");
 			ImageIcon icon = new ImageIcon("emoji/appreciation.jpg");
 			JOptionPane.showMessageDialog(null,nick+" Excellent",nick,JOptionPane.PLAIN_MESSAGE,icon);
+		}
+		if(scores[0] >= 201)
+		{
+			
+			//content +=" inside emoji :";
+			//content +="\uD83D\uDE00";
+			//System.out.println(nick+" emoticon is : "+"ðŸ¥³");
+			ImageIcon icon = new ImageIcon("emoji/jealous.png");
+			JOptionPane.showMessageDialog(null,nick+"Peers Jealous of your Outstanding score",nick,JOptionPane.PLAIN_MESSAGE,icon);
 		}
 		for (int i = 1; i < games; i++){
 			content += ", " + scores[i];
