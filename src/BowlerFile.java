@@ -25,7 +25,7 @@ import java.io.*;
 class BowlerFile implements BowlerDataInterface{
 
 	/** The location of the bowelr database */
-	private static String BOWLER_DAT = "/home/hitesh/sem3/SWE-U2-Project/DB/BOWLERS.DAT";
+	private static String BOWLER_DAT = "DB/BOWLERS.DAT";
 
     /**
      * Retrieves bowler information from the database and returns a Bowler objects with populated fields.
