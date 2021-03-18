@@ -1,6 +1,9 @@
 import java.util.HashMap;
 import java.util.Vector;
 import java.util.Iterator;
+import java.util.Scanner;
+
+import static java.lang.Math.max;
 
 public class LaneScore {
 	private HashMap scores;
@@ -84,13 +87,38 @@ public class LaneScore {
 		int[] curScore;
 		int totalScore = 0;
 		curScore = (int[]) scores.get(Cur);
+
+		//********* Debug
+
+//		System.out.println("frame " + frame);
+//		System.out.println("ball " + ball);
+//		System.out.println("ballIndex " + bowlIndex);
+
+//		int t;
+//		for(int x: curScore){
+//			System.out.println(x);
+//		}
+//		Scanner sc= new Scanner(System.in);    //System.in is a standard input stream
+//		System.out.print("Enter first number- ");
+//		int a= sc.nextInt();
+
 		for (int i = 0; i != 10; i++){
 			cumulScores[bowlIndex][i] = 0;
 		}
-		int current = 2*(frame - 1)+ball-1;
+ 		int current = 2*(frame - 1)+ball-1;
+//		System.out.println("curent " + current);
 		//Iterate through each ball until the current one.
+
+		int penal=0;
 		for (int i = 0; i != current+2; i++){
 			//Spare:
+			penal=max(curScore[i],penal);
+			if(i==2 && curScore[0]==0 && curScore[1]==0){
+				curScore[2]/=2;
+			}
+			if(i>1 && curScore[i-1]==0 && curScore[i-2]==0){
+				curScore[i]-=penal/2;
+			}
 			if( i%2 == 1 && curScore[i - 1] + curScore[i] == 10 && i < current - 1 && i < 19){
 				//This ball was a the second of a spare.
 				//Also, we're not on the current ball.

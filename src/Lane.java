@@ -329,7 +329,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 
 			// next logic handles the ?: what conditions dont allow them another throw?
 			// handle the case of 10th frame first
-			if (frameNumber == 9) {
+			if ( frameNumber == 9) {
 				if (pe.totalPinsDown() == 10) {
 					setter.resetPins();
 					if(pe.getThrowNumber() == 1) {
@@ -404,7 +404,8 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 	 * @return		The new lane event
 	 */
 	private LaneEvent lanePublish(  ) {
-		LaneEvent laneEvent = new LaneEvent(party, bowlIndex, currentThrower, scoreHandler.getCumulScores(), scoreHandler.getScores(), frameNumber+1, curScores, ball, gameIsHalted);
+		LaneEvent laneEvent = new LaneEvent(party, bowlIndex, currentThrower, scoreHandler.getCumulScores(), scoreHandler.getScores(),
+				frameNumber+1, curScores, ball, gameIsHalted);
 		return laneEvent;
 	}
 

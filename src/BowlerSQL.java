@@ -3,7 +3,7 @@ import java.util.Vector;
 
 public class BowlerSQL implements BowlerDataInterface{
 
-    private static String url = "jdbc:sqlite:DB/alley.db";
+    private static String url = "jdbc:sqlite:/home/hitesh/sem3/SWE-U2-Project/DB/alley.db";
 
     public static Bowler getBowlerInfo(String nickName) {
         // Creating connection to the db
@@ -69,6 +69,7 @@ public class BowlerSQL implements BowlerDataInterface{
         try {
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection(url);
+            System.out.println(conn);
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
