@@ -1,11 +1,11 @@
 import javax.swing.JFrame;
 import java.awt.event.WindowEvent;
 
-public class tryGame {
+public class createGame {
 	private JFrame obj = new JFrame();
 	private gamePlay gp;
 
-	public tryGame(String name, boolean[] pins) {
+	public createGame(String name, boolean[] pins) {
 		obj.setBounds(10, 10, 700, 600);
 		obj.setTitle("Bowler - "+name);
 		obj.setResizable(true);
