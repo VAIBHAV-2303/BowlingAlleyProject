@@ -15,6 +15,8 @@ public class gamePlay<pins, i> extends JPanel implements KeyListener, ActionList
 	private Timer timer;
 	private int delay = 8;
 	private long startTime;
+	private long endTime;
+	private long elapsedTime;
 
 	private double ballX = 335;
 	private double ballY = 400;
@@ -35,6 +37,7 @@ public class gamePlay<pins, i> extends JPanel implements KeyListener, ActionList
 	private double theta = 0;
 	private double k = 0.01;
 	private int fallenPins = 0;
+	private boolean isStopped = false;
 
 	private int[] flags = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 	private int[] arrowRectXCoord = {arrowRectX, arrowRectX + arrowRectWidth, arrowRectX + arrowRectWidth, arrowRectX};
@@ -76,9 +79,9 @@ public class gamePlay<pins, i> extends JPanel implements KeyListener, ActionList
 		//timer
 		g2d.setColor(Color.WHITE);
 		g2d.setFont(new Font("serif", Font.BOLD, 25));
-		long endTime = System.currentTimeMillis();
-		long elapsedTime = endTime - startTime;
-		g2d.drawString("Timer" + elapsedTime/1000, 552, 30);
+		endTime = System.currentTimeMillis();
+		elapsedTime = endTime - startTime;
+		g2d.drawString("Timer " + elapsedTime/1000, 552, 30);
 
 		//arrowRect
 		g2d.setColor(Color.RED);
@@ -120,6 +123,10 @@ public class gamePlay<pins, i> extends JPanel implements KeyListener, ActionList
 		timer.start();
 		if(!play){
 			theta = theta + k;
+			if(elapsedTime > 3000) {
+				isStopped = true;
+				return;
+			}
 			if (theta > 0.6){
 				k = -0.01;
 			}
@@ -142,7 +149,6 @@ public class gamePlay<pins, i> extends JPanel implements KeyListener, ActionList
 				if (new Rectangle((int)ballX, (int)ballY, 60, 60).intersects(new Rectangle(temp.get(0), temp.get(1), 20, 20))) {
 					ballXdir = -ballXdir;
 					ballYdir = -ballYdir;
-					System.out.println(theta);
 					if(theta >= 0.2 || theta <= -0.2)
 					{
 						if(theta>=0.2)
@@ -245,7 +251,8 @@ public class gamePlay<pins, i> extends JPanel implements KeyListener, ActionList
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			play = true;
+			if (isStopped == false)
+				play = true;
 		}
 	}
 
