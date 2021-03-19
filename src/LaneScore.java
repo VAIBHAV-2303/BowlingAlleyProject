@@ -63,10 +63,28 @@ public class LaneScore {
 	public void markScore( Bowler Cur, int frame, int ball, int score ){
 		int[] curScore;
 		int index =  ( (frame - 1) * 2 + ball);
+		int bowlIndex = lane.getBowlIndex();
+
 
 		curScore = (int[]) scores.get(Cur);
 
 		curScore[ index - 1] = score;
+
+		if(index==4 && curScore[0]==0 && curScore[1]==0){
+			curScore[2]/=2;
+			curScore[3]/=2;
+		}else if(index>=5 && curScore[index-2]==0 && curScore[index-3]==0){
+			int penal=0;
+			for(int i=2;i<index-1;i++) penal = max(penal,curScore[i]);
+			curScore[ index - 1]-=penal/2;
+		}
+
+//		System.out.println("frame " + frame);
+//		System.out.println("ball " + ball);
+//		System.out.println("ballIndex " + bowlIndex);
+//		System.out.println("Score " + score);
+//		System.out.println("index " + index);
+
 		scores.put(Cur, curScore);
 		getScore( Cur, frame );
 	}
@@ -88,37 +106,13 @@ public class LaneScore {
 		int totalScore = 0;
 		curScore = (int[]) scores.get(Cur);
 
-		//********* Debug
-
-//		System.out.println("frame " + frame);
-//		System.out.println("ball " + ball);
-//		System.out.println("ballIndex " + bowlIndex);
-
-//		int t;
-//		for(int x: curScore){
-//			System.out.println(x);
-//		}
-//		Scanner sc= new Scanner(System.in);    //System.in is a standard input stream
-//		System.out.print("Enter first number- ");
-//		int a= sc.nextInt();
-
 		for (int i = 0; i != 10; i++){
 			cumulScores[bowlIndex][i] = 0;
 		}
  		int current = 2*(frame - 1)+ball-1;
-//		System.out.println("curent " + current);
-		//Iterate through each ball until the current one.
 
-		int penal=0;
 		for (int i = 0; i != current+2; i++){
 			//Spare:
-			penal=max(curScore[i],penal);
-			if(i==2 && curScore[0]==0 && curScore[1]==0){
-				curScore[2]/=2;
-			}
-			if(i>1 && curScore[i-1]==0 && curScore[i-2]==0){
-				curScore[i]-=penal/2;
-			}
 			if( i%2 == 1 && curScore[i - 1] + curScore[i] == 10 && i < current - 1 && i < 19){
 				//This ball was a the second of a spare.
 				//Also, we're not on the current ball.
