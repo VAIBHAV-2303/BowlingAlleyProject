@@ -162,7 +162,13 @@ public class LaneView implements LaneObserver, ActionListener {
 								(Integer.valueOf(lescores[k][i])).toString());
 //						scoreLabel[k][i].setText("0");
 				}
-				for (int i = 0; i < 22; i++) {
+				for (int i = 0; i < 21; i++) {
+					if (i==20 && ((int[]) ((HashMap) le.getScore())
+							.get(bowlers.get(k)))[i-1] + ((int[]) ((HashMap) le.getScore())
+							.get(bowlers.get(k)))[i-2] <= 9){
+								continue;
+					}
+
 					if (((int[]) ((HashMap) le.getScore())
 							.get(bowlers.get(k)))[i]
 							!= -1)
@@ -181,8 +187,7 @@ public class LaneView implements LaneObserver, ActionListener {
 										== 10
 										&& i % 2 == 1)
 							ballLabel[k][i].setText("/");
-						else if ( ((int[])((HashMap) le.getScore()).get(bowlers.get(k)))[i] == -2 ){
-
+						else if (((int[]) ((HashMap) le.getScore()).get(bowlers.get(k)))[i] == -2) {
 							ballLabel[k][i].setText("F");
 						} else
 							ballLabel[k][i].setText(
@@ -190,9 +195,54 @@ public class LaneView implements LaneObserver, ActionListener {
 											.get(bowlers.get(k)))[i]))
 											.toString());
 				}
+
+
+					if (((int[]) ((HashMap) le.getScore())
+							.get(bowlers.get(k)))[21]
+							!= -1){
+						ballLabel[k][21].setText(
+								(Integer.valueOf(((int[]) ((HashMap) le.getScore())
+										.get(bowlers.get(k)))[21]))
+										.toString());
+					}
+
+
+					for (int i = 22; i < 28; i++) {
+
+						if (((int[]) ((HashMap) le.getScore())
+								.get(bowlers.get(k)))[i]
+								!= -1) {
+
+							if (((int[]) ((HashMap) le.getScore())
+									.get(bowlers.get(k)))[i]
+									== 10
+									&& (i % 2 == 0))
+								ballLabel[k][i].setText("X");
+							else if (
+									i > 0
+											&& ((int[]) ((HashMap) le.getScore())
+											.get(bowlers.get(k)))[i]
+											+ ((int[]) ((HashMap) le.getScore())
+											.get(bowlers.get(k)))[i
+											- 1]
+											== 10
+											&& i % 2 == 1)
+								ballLabel[k][i].setText("/");
+							else if (((int[]) ((HashMap) le.getScore()).get(bowlers.get(k)))[i] == -2) {
+
+								ballLabel[k][i].setText("F");
+							} else {
+								ballLabel[k][i].setText(
+										(Integer.valueOf(((int[]) ((HashMap) le.getScore())
+												.get(bowlers.get(k)))[i]))
+												.toString());
+							}
+						}
+					}
+				}
 			}
 		}
-	}
+
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(maintenance)) {

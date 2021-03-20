@@ -64,8 +64,8 @@ public class LaneScore {
 		System.out.println("frame: "+ frame + "index: "+ index + "ball: "+ ball + "score: " + score);
 
 		curScore = (int[]) scores.get(Cur);
-
-		curScore[ index - 1] = score;
+		if(curScore[ index - 1]==-1)
+			curScore[ index - 1] = score;
 		scores.put(Cur, curScore);
 		getScore( Cur, frame );
 	}
@@ -86,7 +86,7 @@ public class LaneScore {
 		int[] curScore;
 		int totalScore = 0;
 		curScore = (int[]) scores.get(Cur);
-		for (int i = 0; i != 10; i++){
+		for (int i = 0; i != 20; i++){
 			cumulScores[bowlIndex][i] = 0;
 		}
 		int current = 2*(frame - 1)+ball-1;
