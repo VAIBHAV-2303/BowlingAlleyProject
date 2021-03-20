@@ -2,6 +2,8 @@ import java.util.HashMap;
 import java.util.Vector;
 import java.util.Iterator;
 
+import static java.lang.Math.max;
+
 public class LaneScore {
 	private HashMap scores;
 	private Party party;
@@ -74,7 +76,8 @@ public class LaneScore {
 			curScore[3]/=2;
 		}else if( index < 19 &&  index>=5 && curScore[index-2]==0 && curScore[index-3]==0){
 			int penal=0;
-			for(int i=2;i<index-1;i++) penal = max(penal,curScore[i]);
+			for(int i=2;i<index-1;i++) penal = 
+					max(penal,curScore[i]);
 			curScore[ index - 1]-=penal/2;
 		}
 
