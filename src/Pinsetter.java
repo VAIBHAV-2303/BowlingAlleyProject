@@ -71,7 +71,6 @@
  */
 
 import java.util.*;
-import java.lang.Boolean;
 
 public class Pinsetter {
 
@@ -129,7 +128,7 @@ public class Pinsetter {
 	 * @post pins may have been knocked down and the thrownumber has been incremented
 	 */
 	public void ballThrown(String name) {	// simulated event of ball hits sensor
-		tryGame newGame = new tryGame(name, pins);
+		createGame newGame = new createGame(name, pins);
 		// int count = 0;
 		// foul = false;
 		// double skill = rnd.nextDouble();
