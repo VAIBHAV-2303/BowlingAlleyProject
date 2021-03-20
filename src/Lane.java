@@ -235,8 +235,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 			tenthFrameStrike = false;
 			ball = 0;
 			while (canThrowAgain) {
-//				setter.ballThrown();		// simulate the thrower's ball hiting
-				setter.ballThrown(currentThrower.getNick());
+				setter.ballThrown();		// simulate the thrower's ball hiting
 				ball++;
 			}
 
@@ -501,18 +500,25 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 			cumulScores[bowlIndex][10] += cumulScores[bowlIndex][9] + curScore[i];
 		}
 
-//		if (i==22 && curScore[i] != -2) {
-//			cumulScores[bowlIndex][11]=0;
+		if(i>=22 && i%2 == 0){
+			cumulScores[bowlIndex][i / 2] += cumulScores[bowlIndex][i / 2 - 1] + curScore[i];
+		}
+
+
+
+
+////		if (i==22 && curScore[i] != -2) {
+////			cumulScores[bowlIndex][11]=0;
+////		}
+//		if (i==23 && i==24 && curScore[i] != -2) {
+//			cumulScores[bowlIndex][11]+=cumulScores[bowlIndex][10] + curScore[i];
 //		}
-		if (i==23 && i==24 && curScore[i] != -2) {
-			cumulScores[bowlIndex][11]+=cumulScores[bowlIndex][10] + curScore[i];
-		}
-		if (i==25  && i==26  && curScore[i] != -2) {
-			cumulScores[bowlIndex][12]+=cumulScores[bowlIndex][11] + curScore[i];
-		}
-		if (i==27 && i==28 && curScore[i] != -2) {
-			cumulScores[bowlIndex][13]+=cumulScores[bowlIndex][12] + curScore[i];
-		}
+//		if (i==25  && i==26  && curScore[i] != -2) {
+//			cumulScores[bowlIndex][12]+=cumulScores[bowlIndex][11] + curScore[i];
+//		}
+//		if (i==27 && i==28 && curScore[i] != -2) {
+//			cumulScores[bowlIndex][13]+=cumulScores[bowlIndex][12] + curScore[i];
+//		}
 
 
 

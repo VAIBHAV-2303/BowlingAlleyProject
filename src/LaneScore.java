@@ -66,6 +66,18 @@ public class LaneScore {
 		curScore = (int[]) scores.get(Cur);
 		if(curScore[ index - 1]==-1)
 			curScore[ index - 1] = score;
+		if(curScore[21]==10)
+			curScore[21]=0;
+
+		if(index < 19 && index==4 && curScore[0]==0 && curScore[1]==0){
+			curScore[2]/=2;
+			curScore[3]/=2;
+		}else if( index < 19 &&  index>=5 && curScore[index-2]==0 && curScore[index-3]==0){
+			int penal=0;
+			for(int i=2;i<index-1;i++) penal = max(penal,curScore[i]);
+			curScore[ index - 1]-=penal/2;
+		}
+
 		scores.put(Cur, curScore);
 		getScore( Cur, frame );
 	}
@@ -89,6 +101,8 @@ public class LaneScore {
 		for (int i = 0; i != 20; i++){
 			cumulScores[bowlIndex][i] = 0;
 		}
+
+
 		int current = 2*(frame - 1)+ball-1;
 		//Iterate through each ball until the current one.
 		for (int i = 0; i != current+2; i++){
@@ -102,9 +116,15 @@ public class LaneScore {
 				boolean doBreak = lane.firstBallStrike(i, curScore);
 				if (doBreak == true)
 					break;
-			}else {
+			}else if(i>=22 && i < 27 && i%2 == 1 && curScore[i - 1] + curScore[i] == 10){
+				cumulScores[bowlIndex][(i/2)] += curScore[i+1] + curScore[i];
+			} if(i== 27 && curScore[i - 1] + curScore[i] == 10) {
+				cumulScores[bowlIndex][(i / 2)] += curScore[i];
+			} else if(i>=22 && i < 28 && i%2 == 1 && curScore[i - 1] + curScore[i] <= 9){
+				cumulScores[bowlIndex][(i/2)] += curScore[i];
+			}else
 				lane.normalThrow(i, curScore);
-			}
+
 		}
 		return totalScore;
 	}

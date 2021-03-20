@@ -200,6 +200,11 @@ public class LaneView implements LaneObserver, ActionListener {
 					if (((int[]) ((HashMap) le.getScore())
 							.get(bowlers.get(k)))[21]
 							!= -1){
+						if(((int[]) ((HashMap) le.getScore())
+								.get(bowlers.get(k)))[20] == 0)
+							ballLabel[k][21].setText(
+									("0"));
+							else
 						ballLabel[k][21].setText(
 								(Integer.valueOf(((int[]) ((HashMap) le.getScore())
 										.get(bowlers.get(k)))[21]))
