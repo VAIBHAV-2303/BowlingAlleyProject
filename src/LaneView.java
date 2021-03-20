@@ -162,7 +162,7 @@ public class LaneView implements LaneObserver, ActionListener {
 								(Integer.valueOf(lescores[k][i])).toString());
 //						scoreLabel[k][i].setText("0");
 				}
-				for (int i = 0; i < 21; i++) {
+				for (int i = 0; i < 22; i++) {
 					if (((int[]) ((HashMap) le.getScore())
 							.get(bowlers.get(k)))[i]
 							!= -1)

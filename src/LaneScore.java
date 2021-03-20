@@ -37,8 +37,8 @@ public class LaneScore {
 		Vector members = party.getMembers();
 		for (int j = 0, membersSize = members.size(); j < membersSize; j++) {
 			Object o = members.get(j);
-			int[] toPut = new int[25];
-			for (int i = 0; i != 25; i++) {
+			int[] toPut = new int[125];
+			for (int i = 0; i != 125; i++) {
 				toPut[i] = -1;
 			}
 			scores.put(o, toPut);
@@ -60,6 +60,8 @@ public class LaneScore {
 	public void markScore( Bowler Cur, int frame, int ball, int score ){
 		int[] curScore;
 		int index =  ( (frame - 1) * 2 + ball);
+
+		System.out.println("frame: "+ frame + "index: "+ index + "ball: "+ ball + "score: " + score);
 
 		curScore = (int[]) scores.get(Cur);
 

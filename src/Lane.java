@@ -239,7 +239,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 				ball++;
 			}
 
-			if (frameNumber == 9){
+			if (frameNumber == 10){
 				int [][] cumulScores = scoreHandler.getCumulScores();
 				finalScores[bowlIndex][gameNumber] = cumulScores[bowlIndex][9];
 				try{
@@ -257,7 +257,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 			frameNumber++;
 			resetBowlerIterator();
 			bowlIndex = 0;
-			if (frameNumber > 9) {
+			if (frameNumber > 10) {
 				gameFinished = true;
 				gameNumber++;
 			}
@@ -389,7 +389,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 		int [][] cumulScores = scoreHandler.getCumulScores();
 
 		curScores = new int[party.getMembers().size()];
-		cumulScores = new int[party.getMembers().size()][10];
+		cumulScores = new int[party.getMembers().size()][20];
 		finalScores = new int[party.getMembers().size()][128]; //Hardcoding a max of 128 games, bite me.
 		gameNumber = 0;
 
@@ -490,6 +490,10 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 		}
 		if (i/2 == 10 && curScore[i] != -2) {
 			cumulScores[bowlIndex][9] += curScore[i];
+		}
+		if(i==21){
+			cumulScores[bowlIndex][10] += cumulScores[bowlIndex][9];
+			cumulScores[bowlIndex][10]+= curScore[i];
 		}
 		scoreHandler.setCumulScores(cumulScores);
 	}
