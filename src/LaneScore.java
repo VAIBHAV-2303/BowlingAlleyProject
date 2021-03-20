@@ -1,9 +1,6 @@
 import java.util.HashMap;
 import java.util.Vector;
 import java.util.Iterator;
-import java.util.Scanner;
-
-import static java.lang.Math.max;
 
 public class LaneScore {
 	private HashMap scores;
@@ -40,8 +37,8 @@ public class LaneScore {
 		Vector members = party.getMembers();
 		for (int j = 0, membersSize = members.size(); j < membersSize; j++) {
 			Object o = members.get(j);
-			int[] toPut = new int[25];
-			for (int i = 0; i != 25; i++) {
+			int[] toPut = new int[125];
+			for (int i = 0; i != 125; i++) {
 				toPut[i] = -1;
 			}
 			scores.put(o, toPut);
@@ -63,28 +60,12 @@ public class LaneScore {
 	public void markScore( Bowler Cur, int frame, int ball, int score ){
 		int[] curScore;
 		int index =  ( (frame - 1) * 2 + ball);
-		int bowlIndex = lane.getBowlIndex();
 
+		System.out.println("frame: "+ frame + "index: "+ index + "ball: "+ ball + "score: " + score);
 
 		curScore = (int[]) scores.get(Cur);
-
-		curScore[ index - 1] = score;
-
-		if(index==4 && curScore[0]==0 && curScore[1]==0){
-			curScore[2]/=2;
-			curScore[3]/=2;
-		}else if(index>=5 && curScore[index-2]==0 && curScore[index-3]==0){
-			int penal=0;
-			for(int i=2;i<index-1;i++) penal = max(penal,curScore[i]);
-			curScore[ index - 1]-=penal/2;
-		}
-
-//		System.out.println("frame " + frame);
-//		System.out.println("ball " + ball);
-//		System.out.println("ballIndex " + bowlIndex);
-//		System.out.println("Score " + score);
-//		System.out.println("index " + index);
-
+		if(curScore[ index - 1]==-1)
+			curScore[ index - 1] = score;
 		scores.put(Cur, curScore);
 		getScore( Cur, frame );
 	}
@@ -105,12 +86,11 @@ public class LaneScore {
 		int[] curScore;
 		int totalScore = 0;
 		curScore = (int[]) scores.get(Cur);
-
-		for (int i = 0; i != 10; i++){
+		for (int i = 0; i != 20; i++){
 			cumulScores[bowlIndex][i] = 0;
 		}
- 		int current = 2*(frame - 1)+ball-1;
-
+		int current = 2*(frame - 1)+ball-1;
+		//Iterate through each ball until the current one.
 		for (int i = 0; i != current+2; i++){
 			//Spare:
 			if( i%2 == 1 && curScore[i - 1] + curScore[i] == 10 && i < current - 1 && i < 19){
